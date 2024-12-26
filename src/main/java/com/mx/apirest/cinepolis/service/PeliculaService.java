@@ -14,5 +14,5 @@ public interface PeliculaService {
 	
 	public void editar(Pelicula pelicula);
 	
-	public void eliminar(Pelicula pelicula);
+	public void eliminar(int idPelicula);
 }

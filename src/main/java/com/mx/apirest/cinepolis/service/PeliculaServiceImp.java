@@ -10,11 +10,11 @@ import com.mx.apirest.cinepolis.dao.PeliculaDao;
 import com.mx.apirest.cinepolis.model.Pelicula;
 
 @Service
-public class PeliculaServiceImp implements PeliculaService{
+public class PeliculaServiceImp implements PeliculaService {
 
 	@Autowired
 	PeliculaDao peliculasDao;
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public List<Pelicula> listar() {
@@ -29,22 +29,25 @@ public class PeliculaServiceImp implements PeliculaService{
 		peliculasDao.save(pelicula);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public Pelicula buscar(int idPelicula) {
 		// TODO Auto-generated method stub
-		return null;
+		return peliculasDao.findById(idPelicula).orElse(null);
 	}
 
+	@Transactional
 	@Override
 	public void editar(Pelicula pelicula) {
 		// TODO Auto-generated method stub
-		
+		peliculasDao.save(pelicula);
 	}
 
+	@Transactional
 	@Override
-	public void eliminar(Pelicula pelicula) {
+	public void eliminar(int idPelicula) {
 		// TODO Auto-generated method stub
-		
+		peliculasDao.deleteById(idPelicula);
 	}
 
 }

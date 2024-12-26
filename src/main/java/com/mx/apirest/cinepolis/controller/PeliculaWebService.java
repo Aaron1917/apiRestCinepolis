@@ -17,18 +17,37 @@ import com.mx.apirest.cinepolis.service.PeliculaServiceImp;
 @RequestMapping(path = "PeliculaWebService")
 @CrossOrigin
 public class PeliculaWebService {
-	
+
 	@Autowired
 	PeliculaServiceImp peliculaService;
-	
+
 	// http://localhost:9000/PeliculaWebService/listar
 	@GetMapping(path = "listar")
-	public List<Pelicula> listar(){
+	public List<Pelicula> listar() {
 		return peliculaService.listar();
 	}
+
 	// http://localhost:9000/PeliculaWebService/guardar
 	@PostMapping(path = "guardar")
 	public void guardar(@RequestBody Pelicula pelicula) {
 		peliculaService.guardar(pelicula);
+	}
+
+	// http://localhost:9000/PeliculaWebService/buscar
+	@PostMapping(path = "buscar")
+	public Pelicula buscar(@RequestBody Pelicula pelicula) {
+		return peliculaService.buscar(pelicula.getIdPelicula());
+	}
+
+	// http://localhost:9000/PeliculaWebService/editar
+	@PostMapping(path = "editar")
+	public void editar(@RequestBody Pelicula pelicula) {
+		peliculaService.editar(pelicula);
+	}
+
+	// http://localhost:9000/PeliculaWebService/eliminar
+	@PostMapping(path = "eliminar")
+	public void eliminar(@RequestBody Pelicula pelicula) {
+		peliculaService.eliminar(pelicula.getIdPelicula());
 	}
 }
